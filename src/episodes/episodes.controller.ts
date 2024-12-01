@@ -10,13 +10,17 @@ import {
   ParseIntPipe,
   Post,
   Query,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { EpisodesService } from './episodes.service';
 import { ConfigService } from 'src/config/config.service';
 import { IsPositivePipe } from 'src/pipes/is-positive.pipe';
 import { CreateEpisodeDto } from 'src/dto/create-episode.dto';
+import { ApiKeyGuard } from 'src/guards/api-key.guard';
 
+
+@UseGuards(ApiKeyGuard)
 @Controller('episodes')
 export class EpisodesController {
   constructor(
